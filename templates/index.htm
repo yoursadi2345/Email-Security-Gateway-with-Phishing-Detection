@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Email Security Gateway — Phishing Detector</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🛡️ Email Security Gateway</h1>
+    <p class="subtitle">Paste a raw email (.eml content or plain text) to scan it for phishing indicators.</p>
+  </header>
+
+  <main>
+    <form action="/analyze" method="post">
+      <textarea name="email_content" rows="14" placeholder="Paste full email here — including headers like From:, Reply-To:, Subject: if you have them...">{{ raw_text }}</textarea>
+      <button type="submit">Scan Email</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+      <section class="result verdict-{{ result.verdict|lower }}">
+        <h2>Verdict: {{ result.verdict }}</h2>
+        <div class="score-bar">
+          <div class="score-fill" style="width: {{ result.risk_percent }}%"></div>
+        </div>
+        <p>Risk Score: {{ result.risk_percent }}% ({{ result.score }} / {{ result.max_score }} points)</p>
+
+        <h3>Findings</h3>
+        <table>
+          <thead>
+            <tr><th>Check</th><th>Severity</th><th>Detail</th><th>Points</th></tr>
+          </thead>
+          <tbody>
+            {% for f in result.findings %}
+            <tr class="sev-{{ f.severity }}">
+              <td>{{ f.check }}</td>
+              <td>{{ f.severity }}</td>
+              <td>{{ f.detail }}</td>
+              <td>{{ f.points }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if result.urls_found %}
+        <h3>URLs Found</h3>
+        <ul>
+          {% for u in result.urls_found %}<li>{{ u }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if result.attachments %}
+        <h3>Attachments</h3>
+        <ul>
+          {% for a in result.attachments %}<li>{{ a }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if result.headers and result.headers.From %}
+        <h3>Header Summary</h3>
+        <ul>
+          <li><strong>From:</strong> {{ result.headers.From }}</li>
+          <li><strong>Reply-To:</strong> {{ result.headers['Reply-To'] }}</li>
+          <li><strong>Return-Path:</strong> {{ result.headers['Return-Path'] }}</li>
+          <li><strong>Subject:</strong> {{ result.headers.Subject }}</li>
+        </ul>
+        {% endif %}
+      </section>
+    {% endif %}
+  </main>
+
+  <footer>
+    <p>Educational project — heuristic-based detection, not a substitute for enterprise-grade email security.</p>
+  </footer>
+</body>
+</html>
