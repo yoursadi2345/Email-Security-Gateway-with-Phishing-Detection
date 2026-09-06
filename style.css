@@ -1,0 +1,91 @@
+* { box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  margin: 0;
+  padding: 0 20px 60px;
+}
+header {
+  text-align: center;
+  padding: 40px 0 20px;
+}
+header h1 { margin-bottom: 4px; }
+.subtitle { color: #94a3b8; }
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+textarea {
+  width: 100%;
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+button {
+  margin-top: 12px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+button:hover { background: #4f46e5; }
+
+.error { color: #f87171; }
+
+.result {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+}
+.result h2 { margin-top: 0; }
+
+.verdict-phishing { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+.verdict-suspicious { border-color: #f59e0b; background: rgba(245,158,11,0.08); }
+.verdict-safe { border-color: #22c55e; background: rgba(34,197,94,0.08); }
+
+.score-bar {
+  background: #334155;
+  border-radius: 6px;
+  height: 14px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #f59e0b, #ef4444);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #334155;
+  font-size: 14px;
+}
+.sev-high td:nth-child(2) { color: #ef4444; font-weight: bold; }
+.sev-medium td:nth-child(2) { color: #f59e0b; font-weight: bold; }
+.sev-low td:nth-child(2) { color: #60a5fa; }
+.sev-info td:nth-child(2) { color: #94a3b8; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #64748b;
+  font-size: 13px;
+}

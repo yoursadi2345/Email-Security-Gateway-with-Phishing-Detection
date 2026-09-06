@@ -1,0 +1,22 @@
+From: PayPal Security <security@paypa1-support.com>
+Reply-To: verify-team@secure-alerts.ru
+Return-Path: <bounce@totally-different-domain.xyz>
+Subject: Urgent Action Required: Your Account Will Be Suspended
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+<body>
+Dear Customer,
+<p>We have detected unusual activity on your account. Your account will be terminated
+within 24 hours unless you verify your identity immediately.</p>
+
+<p>Please click here to confirm your identity:
+<a href="http://192.168.5.20/paypal-login/verify.php">https://www.paypal.com/verify</a></p>
+
+<p>You may also use this quick link: <a href="http://bit.ly/3xk9Alert">Secure Verification</a></p>
+
+<p>For your security, please enter your password and OTP on the verification page.</p>
+
+<p>Thank you,<br>PayPal Security Team</p>
+</body>
+</html>
